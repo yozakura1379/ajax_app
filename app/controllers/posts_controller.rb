@@ -4,10 +4,10 @@ class PostsController < ApplicationController
   end
   def create
     post = Post.create(content: params[:content], checked: false) #このチェックをfalseにしないと既読状態で送られてしまう
-    render json:{ post: post }
+    render json:{ post: post }      #これをすることでcreateは非同期通信を行えるようになった
   end
   def checked
-    post = Post.find(params[:id])
+    post = Post.find(params[:id])   #あとで聞く
     if post.checked
       post.update(checked: false) 
     else
